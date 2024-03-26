@@ -549,13 +549,13 @@ Note: squeezelite must be started with the `-v` flag to enable visualizer suppor
 
 ### macOS
 
-Note: Cava doesn't render correctly within the default macOS terminal. In order to achieve an optimal display, install [Kitty](https://sw.kovidgoyal.net/kitty/index.html). Beware that you may run in to the issue presented in #109; however, it can be resolved with [this](https://stackoverflow.com/questions/7165108/in-os-x-lion-lang-is-not-set-to-utf-8-how-to-fix-it).
+Note: Cava doesn't render correctly within the default macOS terminal. In order to achieve an optimal display, install [Kitty](https://sw.kovidgoyal.net/kitty/index.html). Beware that you may run in to the issue presented in [Issue #109](https://github.com/karlstav/cava/issues/109). However, it can be resolved by [enabling UTF-8](https://stackoverflow.com/questions/7165108/in-os-x-lion-lang-is-not-set-to-utf-8-how-to-fix-it).
 
 **Background Music**
 
 Install [Background Music](https://github.com/kyleneideck/BackgroundMusic) which provides a loopback interface automatically. Once installed and running just edit your [config](#configuration) to use this interface with portaudio:
 
-```
+```ini
 method = portaudio
 source = "Background Music"
 ```
@@ -566,9 +566,20 @@ source = "Background Music"
 
 Then edit your [config](#configuration) to use this interface with portaudio:
 
-```
+```ini
 method = portaudio
 source = "Soundflower (2ch)"
+```
+
+**Loopback**
+
+[Loopback](https://rogueamoeba.com/loopback/) is paid software that allows you to create custom audio interfaces for choosing which sound sources you want to send to cava and change them on the fly. Simply create a New Virtual Device, name it whatever you want (e.g. "cava"), add Sources for what you want to send to cava, and add Monitors to hear the audio via specified devices (allowing you to play music from your speakers while listening to other audio via your headphones, etc). The built-in Pass-Thru source also allows you to route audio to Loopback to add to the mix via other applications.
+
+Then edit your [config](#configuration) to use this interface with portaudio. The `source` will be whatever you named your Virtual Device:
+
+```ini
+method = portaudio
+source = "cava" # This must be what you named your Virtual Device, default is "Loopback Audio"
 ```
 
 ### Windows
